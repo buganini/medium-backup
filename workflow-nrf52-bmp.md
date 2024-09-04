@@ -20,6 +20,8 @@ brew install --cask gcc-arm-embedded
 
 ## Hardware Setup
 
+![Hardware Setup](workflow-nrf52-bmp/hardware-setup.jpg)
+
 Connect both the BMP (Black Magic Probe), the USB power supply for MDBT50Q-DB-33, and the SWD cable between the two boards.
 
 The definition of the 10Pins connector can be found at https://black-magic.org/knowledge/pinouts.html
@@ -27,6 +29,9 @@ The definition of the 10Pins connector can be found at https://black-magic.org/k
 The schematics for Raytac MDBT50Q-DB-33 can be found at https://www.raytac.com/product/ins.php?index_id=97
 
 ## Check BMP Connection
+![lsusb](workflow-nrf52-bmp/lsusb.jpg)
+![ls /dev/cu](workflow-nrf52-bmp/ls-dev.jpg)
+
 * cu.usbmodemxxxxxxxx1: GDB port
 * cu.usbmodemxxxxxxxx3: RTT port
 
@@ -307,6 +312,9 @@ Now we have RTT support.
 First, make sure you have nRF Connect SDK installed.
 I use the Toolchain Manager from nrf Connect for Desktop
 
+![nRF Connect for Desktop](workflow-nrf52-bmp/nrf-connect-for-desktop.png)
+![Toolchain Manager](workflow-nrf52-bmp/toolchain-manager.png)
+
 ```
 > export ZEPHYR_BASE=/opt/nordic/ncs/v2.6.1/zephyr
 > export NCS_TOOLCHAIN=/opt/nordic/ncs/toolchains/580e4ef81c
@@ -388,6 +396,8 @@ After rebuild/program you should see the output from the RTT port
 minicom -c on -D /dev/tty.usbmodem72AE0BF33
 # -c on is for colorful output
 ```
+
+![Result](workflow-nrf52-bmp/result.png)
 
 More Tips
 \n -> \r\n translation in minicom
