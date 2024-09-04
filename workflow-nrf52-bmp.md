@@ -79,9 +79,9 @@ determining executable automatically.  Try using the "file" command.
 Target does not support this command.
 ```
 
-It appears that the firmware shipped with the BMP (Blackmagic Probe) doesn't enable RTT, so we need to build the firmware.
+It appears that the firmware shipped with the BMP (Black Magic Probe) doesn't enable RTT, so we need to build the firmware.
 
-## Firmware Upgrade for the Blackmagic Probe
+## Firmware Upgrade for the Black Magic Probe
 Prerequisites for macOS
 ```
 brew install git meson ninja
