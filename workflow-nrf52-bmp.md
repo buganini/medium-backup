@@ -6,7 +6,7 @@ This article describes how to build a Zephyr project with the command line (not 
 It is called native because Black Magic Probe can also run on other 3rd party hardware, check https://black-magic.org/hardware.html for more details)
 
 **Target Hardware**: Raytac MDBT50Q-DB-33 (nrf52833)
-Black Magic Probe is probably the most versatile debugger, check https://black-magic.org/supported-targets.html for more details
+Black Magic Probe (BMP) is probably the most versatile debugger, check https://black-magic.org/supported-targets.html for more details
 
 **My OS**: macOS Sonoma 14.6.1, Apple M2, everything should be no more difficult on Linux
 
@@ -22,7 +22,7 @@ brew install --cask gcc-arm-embedded
 
 ![Hardware Setup](workflow-nrf52-bmp/hardware-setup.jpg)
 
-Connect both the BMP (Black Magic Probe), the USB power supply for MDBT50Q-DB-33, and the SWD cable between the two boards.
+Connect both the BMP, the USB power supply for MDBT50Q-DB-33, and the SWD cable between the two boards.
 
 The definition of the 10Pins connector can be found at https://black-magic.org/knowledge/pinouts.html
 
@@ -79,7 +79,7 @@ determining executable automatically.  Try using the "file" command.
 Target does not support this command.
 ```
 
-It appears that the firmware shipped with the BMP (Black Magic Probe) doesn't enable RTT, so we need to build the firmware.
+It appears that the firmware shipped with the BMP doesn't enable RTT, so we need to build the firmware.
 
 ## Firmware Upgrade for the Black Magic Probe
 Prerequisites for macOS
