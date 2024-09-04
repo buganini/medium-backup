@@ -399,6 +399,6 @@ minicom -c on -D /dev/tty.usbmodem72AE0BF33
 
 ![Result](workflow-nrf52-bmp/result.png)
 
-More Tips
+## More Tips
 \n -> \r\n translation in minicom
 https://unix.stackexchange.com/questions/283924/how-can-minicom-permanently-translate-incoming-newline-n-to-crlf
