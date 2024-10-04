@@ -1,5 +1,5 @@
 # My favorite data packing method in 2024
-Zstandard(MessagePack(stream)) with Python/Django examples
+Zstandard(MessagePack(stream)) with Python/Requests/Django/Flask/Javascript examples
 
 ## Introduction
 Zstandard is one of the best compression algorithms available, it is also one of the supported compression methods in PostgreSQL 16, checkout the benchmark in https://www.cybertec-postgresql.com/en/lz4-zstd-pg_dump-compression-postgresql-16/
@@ -148,15 +148,43 @@ def get(self, request):
     def output():
         cctx = zstandard.ZstdCompressor(level=3)
         cobj = cctx.compressobj()
-    
+
         packer = msgpack.Packer()
         for obj in objs:
             yield cobj.compress(packer.pack(obj))
         yield cobj.flush()
-  
+
     response = StreamingHttpResponse(output())
     response['Content-Type'] = 'application/octet-stream'
     return response
+```
+
+##
+``` python
+import zstandard
+import msgpack
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/endpoint')
+def generate_output():
+    objs = [
+        "1",
+        2,
+        [3,4],
+        {"5":6},
+        b"7"
+    ]
+    def generate():
+        cctx = zstandard.ZstdCompressor(level=3)
+        cobj = cctx.compressobj()
+
+        packer = msgpack.Packer()
+        for obj in objs:
+            yield cobj.compress(packer.pack(obj))
+        yield cobj.flush()
+    return app.response_class(generate(), mimetype='application/octet-stream')
 ```
 
 ## MessagePack+Zstd: Unpacking from requests.get(stream=True)
@@ -216,16 +244,16 @@ requests.post(url, data=output())
   unpacker.on("data", (data)=>{
       console.log(data); // output
   });
-  
+
   const dctx = new fzstd.Decompress((chunk, isLast) => {
       unpacker.decode(chunk);
       if (isLast) {
           unpacker.end();
       }
   });
-  
+
   const url = "https://......"
-  
+
   // Haven't found a good way to do this in stream fetching
   const response = await axios.get(url, {responseType: 'arraybuffer'});
   const data = new Uint8Array(response.data);
