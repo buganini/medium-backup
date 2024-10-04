@@ -25,6 +25,7 @@ pip install msgpack
 ```
 
 ## MessagePack as a JSON alternative
+While JSON cannot accommodate the binary object in the last element of objs, MessagePack is capable of containing it.
 ``` python
 import msgpack
 
