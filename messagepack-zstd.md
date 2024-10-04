@@ -209,7 +209,6 @@ requests.post(url, data=output())
 ## MessagePack+Zstd: Unpacking in browser with JavaScript
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/axios@1.7.7/dist/axios.min.js"></script>
-<script src="https://unpkg.com/fzstd"></script>
 <script src="https://cdn.jsdelivr.net/npm/fzstd/umd/index.js"></script>
 <script src="https://rawgit.com/kawanet/msgpack-lite/master/dist/msgpack.min.js"></script>
 <script>
